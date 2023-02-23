@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
@@ -106,7 +107,7 @@ public class UserController {
     @PostMapping("/add-new-user")
     public Success addNewUser(@RequestBody User user) {
 
-        String UID = user.getUid();
+        String UID = UUID.randomUUID().toString();
         Success returnSuccess = new Success();
 
         if (uIRepo.findById(UID).isPresent()) {
@@ -114,7 +115,7 @@ public class UserController {
             returnSuccess.setSuccess(false);
         } else {
             UserInfo userinfo = UserInfo.builder()
-                    .uid(user.getUid())
+                    .uid(UID)
                     .email(user.getEmail())
                     .password(user.getPassword())
                     .nickname(user.getNickname())

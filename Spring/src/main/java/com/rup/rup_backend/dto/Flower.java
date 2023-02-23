@@ -4,13 +4,14 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString
+// @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Flower {
     private String uid;
     private String flower;
     private String flowerNickname;
-    private int flowerGrownLevel;
+    private Integer flowerPoint;
+    private boolean flowerState;
     private String date;
 }

@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Entity(name="notice_record")
 @NoArgsConstructor
 @Getter
-@ToString
+// @ToString
 public class Notice {
     @Id
     private int idx;

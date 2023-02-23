@@ -4,7 +4,7 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString
+// @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetPointRecord {

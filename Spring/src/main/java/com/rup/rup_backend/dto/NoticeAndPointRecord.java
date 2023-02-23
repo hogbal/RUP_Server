@@ -6,7 +6,7 @@ import java.util.List;
 
 @Setter
 @Getter
-@ToString
+// @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class NoticeAndPointRecord<records> {

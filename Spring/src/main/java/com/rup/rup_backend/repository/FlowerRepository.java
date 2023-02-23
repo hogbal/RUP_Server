@@ -10,8 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface FlowerRepository extends JpaRepository<FlowerInfo, Integer> {
-    @Query(value = "SELECT * FROM flower_record WHERE uid = :uid ORDER BY flower_grown_level", nativeQuery = true)
-    List<FlowerInfo> findFlowerInfoByUid(@Param("uid")String uid);
+    // @Query(value = "SELECT * FROM flower_record WHERE uid = :uid ORDER BY flower_grown_level", nativeQuery = true)
+    // List<FlowerInfo> findFlowerInfoByUid(@Param("uid")String uid);
+
+    @Query(value = "SELECT * FROM flower_record WHERE uid = :uid and flower_state = 1", nativeQuery = true)
+    List<FlowerInfo> findFlowerEndByUid(@Param("uid")String uid);
+
+    @Query(value = "SELECT * FROM flower_record WHERE uid = :uid and flower_state = 0", nativeQuery = true)
+    List<FlowerInfo> findFlowerLastByUid(@Param("uid")String uid);
 
     @Transactional
     @Modifying
@@ -20,6 +26,6 @@ public interface FlowerRepository extends JpaRepository<FlowerInfo, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE flower_record SET flower_grown_level = flower_grown_level + :point WHERE uid = :uid AND flower_grown_level < :maxGrownLevel", nativeQuery = true)
-    void updateFlowerGrownLevel(@Param("point")int point, @Param("uid")String uid, @Param("maxGrownLevel")int maxGrownLevel);
+    @Query(value = "UPDATE flower_record SET flower_state = 1 WHERE uid = :uid", nativeQuery = true)
+    void updateFlowerState(@Param("uid")String uid);
 }

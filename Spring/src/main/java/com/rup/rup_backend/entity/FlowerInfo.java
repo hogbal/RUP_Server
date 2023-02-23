@@ -12,13 +12,13 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString
 public class FlowerInfo {
     @Id
     private int idx;
     private String uid;
     private String flower;
     private String flower_nickname;
-    private int flower_grown_level;
+    private Integer flower_point;
+    private boolean flower_state;
     private String date;
 }

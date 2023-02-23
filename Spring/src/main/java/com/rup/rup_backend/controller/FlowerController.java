@@ -38,4 +38,26 @@ public class FlowerController {
 
         return returnSuccess;
     }
+
+    @PostMapping("/mv-flower")
+    public Success mvFlower(@RequestBody Flower requestFlower){
+        String uid = requestFlower.getUid();
+
+        Success returnSuccess = new Success();
+
+        try{
+            if(uid != null){
+                flowerRepo.updateFlowerState(uid);
+                returnSuccess.setSuccess(true);
+            }
+            else{
+                returnSuccess.setSuccess(false);
+            }
+        }
+        catch(Exception e){
+            returnSuccess.setSuccess(false);
+        }
+
+        return returnSuccess;
+    }
 }

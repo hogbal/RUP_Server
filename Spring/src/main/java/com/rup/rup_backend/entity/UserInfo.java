@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString
+// @ToString
 public class UserInfo {
 
     @Id

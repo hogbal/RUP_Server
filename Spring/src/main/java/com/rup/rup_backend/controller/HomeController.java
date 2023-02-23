@@ -39,19 +39,19 @@ public class HomeController {
     @Value("${custom.path.user.user-images-path}")
     private String imgPath;
 
-    int maxLevel = 30; // 꽃 최대 성장 정도
-    HashMap<String, Integer> kindOfFlowers = new HashMap<String, Integer>(){{
-        put("flowerA", 0);
-        put("flowerB", 1);
-        put("flowerC", 2);
-        put("flowerD", 3);
-        put("flowerE", 4);
-        put("flowerF", 5);
-        put("flowerG", 6);
-        put("flowerH", 7);
-        put("flowerI", 8);
-        put("flowerJ", 9);
-    }};
+    // int maxLevel = 30; // 꽃 최대 성장 정도
+    // HashMap<String, Integer> kindOfFlowers = new HashMap<String, Integer>(){{
+    //     put("flowerA", 0);
+    //     put("flowerB", 1);
+    //     put("flowerC", 2);
+    //     put("flowerD", 3);
+    //     put("flowerE", 4);
+    //     put("flowerF", 5);
+    //     put("flowerG", 6);
+    //     put("flowerH", 7);
+    //     put("flowerI", 8);
+    //     put("flowerJ", 9);
+    // }};
 
     @GetMapping("/main")
     public User mainPage(@RequestParam String uid){
@@ -78,17 +78,17 @@ public class HomeController {
                     .map(c -> new GetPointRecord(c.getUid(), c.getDate(), c.getPoint()))
                     .collect(Collectors.toList());
 
-            List<FlowerInfo> findFlowerInfo = flowerRepo.findFlowerInfoByUid(uid);
-            List<Flower> flowers = findFlowerInfo
+            List<FlowerInfo> findFlowerEnd = flowerRepo.findFlowerEndByUid(uid);
+            List<Flower> flowerEnds = findFlowerEnd
                     .stream()
-                    .map(f -> new Flower(f.getUid(), f.getFlower(), f.getFlower_nickname(), f.getFlower_grown_level(), f.getDate()))
+                    .map(f -> new Flower(f.getUid(), f.getFlower(), f.getFlower_nickname(), f.getFlower_point(), f.isFlower_state(), f.getDate()))
                     .collect(Collectors.toList());
 
-            int nowFlowerSeed = 10;
-
-            if(!flowers.isEmpty() && flowers.get(0).getFlowerGrownLevel() < 30){
-                nowFlowerSeed = kindOfFlowers.getOrDefault(flowers.get(0).getFlower(), 10);
-            }
+            List<FlowerInfo> findFlowerNow = flowerRepo.findFlowerLastByUid(uid);
+            List<Flower> flowerNow = findFlowerNow
+                    .stream()
+                    .map(f -> new Flower(f.getUid(), f.getFlower(), f.getFlower_nickname(), f.getFlower_point(), f.isFlower_state(), f.getDate()))
+                    .collect(Collectors.toList());
 
             File isExistPfImg = new File(imgPath + uid + ".jpg");
             String profilePath = "";
@@ -110,8 +110,8 @@ public class HomeController {
                     point,
                     count_recycle,
                     calendarDate,
-                    nowFlowerSeed,
-                    flowers
+                    flowerNow,
+                    flowerEnds
             );
 
         }
@@ -164,7 +164,7 @@ public class HomeController {
 
             pRRepo.insertPointRecord(uid, point);
             uIRepo.updateTotalPointAndRecycle(point, uid);
-            flowerRepo.updateFlowerGrownLevel(point, uid, maxLevel);
+            // flowerRepo.updateFlowerGrownLevel(point, uid, maxLevel);
 
             returnSuccess.setSuccess(true);
 

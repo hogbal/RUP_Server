@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
+// @ToString
 public class Success {
     private boolean success = true;
 }

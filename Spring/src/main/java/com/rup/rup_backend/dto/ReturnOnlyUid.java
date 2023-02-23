@@ -8,7 +8,7 @@ import net.bytebuddy.asm.Advice;
 
 @Setter
 @Getter
-@ToString
+// @ToString
 @NoArgsConstructor
 public class ReturnOnlyUid {
     private String uid;

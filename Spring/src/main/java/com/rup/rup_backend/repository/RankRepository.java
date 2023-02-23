@@ -8,9 +8,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface RankRepository extends JpaRepository<RankInfo, String> {
-   @Query(value="SELECT Nickname, RANK() OVER (ORDER BY(TotalPoint) DESC) AS Rank, College, SUM(Point) AS TotalPoint FROM USER_INFO GROUP BY(College) ORDER BY(Rank)", nativeQuery = true)
+   @Query(value="SELECT nickname, RANK() OVER (ORDER BY(totalpoint) DESC) AS rank, college, SUM(point) AS totalpoint FROM user_info GROUP BY(college) ORDER BY(rank)", nativeQuery = true)
    List<RankInfo> findRankGroupByCollege();
 
-   @Query(value="SELECT Nickname, RANK() OVER (ORDER BY(Point) DESC) AS Rank, College, Point AS TotalPoint FROM USER_INFO WHERE College = :college ORDER BY(Rank)", nativeQuery = true)
+   @Query(value="SELECT nickname, RANK() OVER (ORDER BY(point) DESC) AS rank, college, point AS totalpoint FROM user_info WHERE college = :college ORDER BY(rank)", nativeQuery = true)
    List<RankInfo> findRankAllByCollege(@Param("college")String college);
 }

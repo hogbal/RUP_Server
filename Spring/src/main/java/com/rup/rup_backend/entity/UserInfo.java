@@ -4,7 +4,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="USER_INFO")
+@Entity(name="user_info")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -35,6 +35,6 @@ public class UserInfo {
         this.birth = birth;
         this.college = college;
         this.major = major;
-    } // 회원가입
+    }
 
 }

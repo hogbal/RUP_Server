@@ -8,14 +8,14 @@ import lombok.ToString;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="FLOWER_TABLE")
+@Entity(name="flower_record")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @ToString
 public class FlowerInfo {
     @Id
-    private int id;
+    private int idx;
     private String uid;
     private String flower;
     private String flower_nickname;

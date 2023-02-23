@@ -9,6 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface NoticeRepository extends JpaRepository<Notice, Integer> {
-    @Query(value = "SELECT * FROM NOTICE ORDER BY Date DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM notice_record ORDER BY date DESC LIMIT 1", nativeQuery = true)
     Optional<Notice> findNoticeByMaxDate();
 }

@@ -17,25 +17,25 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, String> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE USER_INFO U SET U.point = U.Point + :point, U.Count_recycle = U.Count_recycle + :point WHERE U.UID = :uid", nativeQuery = true)
+    @Query(value = "UPDATE user_info U SET U.point = U.point + :point, U.count_recycle = U.count_recycle + :point WHERE U.uid = :uid", nativeQuery = true)
     void updateTotalPointAndRecycle(@Param("point")int point, @Param("uid")String uid) throws Exception;
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE USER_INFO U SET U.Password = :password WHERE U.UID = :uid", nativeQuery = true)
+    @Query(value = "UPDATE user_info U SET U.password = :password WHERE U.uid = :uid", nativeQuery = true)
     void updateTemporaryPassword(@Param("password")String tempPw, @Param("uid")String uid) throws Exception;
 
     @Transactional
     @Modifying
-    @Query(value="UPDATE USER_INFO U SET " +
-            "U.Email = :email," +
-            "U.Password = :password," +
-            "U.Nickname = :nickname," +
-            "U.Sex = :sex," +
-            "U.Birth = :birth," +
-            "U.College = :college," +
-            "U.Major = :major" +
-            " WHERE U.UID = :uid"
+    @Query(value="UPDATE user_info U SET " +
+            "U.email = :email," +
+            "U.[assword = :password," +
+            "U.nickname = :nickname," +
+            "U.sex = :sex," +
+            "U.birth = :birth," +
+            "U.college = :college," +
+            "U.major = :major" +
+            " WHERE U.uid = :uid"
             , nativeQuery = true)
     void updateUserInfo(@Param("email")String email,
                         @Param("password")String password,
@@ -49,7 +49,7 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, String> {
 
     @Transactional
     @Modifying
-    @Query(value="DELETE FROM USER_INFO WHERE UID = :uid", nativeQuery = true)
+    @Query(value="DELETE FROM user_info WHERE uid = :uid", nativeQuery = true)
     void deleteUserInfo(@Param("uid")String uid);
 
 }

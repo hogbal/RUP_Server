@@ -9,13 +9,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name="NOTICE")
+@Entity(name="notice_record")
 @NoArgsConstructor
 @Getter
 @ToString
 public class Notice {
     @Id
-    private int id;
+    private int idx;
     private String date;
     private String title;
     private String notice;

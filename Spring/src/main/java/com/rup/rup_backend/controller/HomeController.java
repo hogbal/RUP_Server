@@ -142,7 +142,6 @@ public class HomeController {
                     notice.get().getTitle(),
                     notice.get().getNotice(),
                     findRecords.get(0).getUid(),
-                    findRecords.get(0).getEmail(),
                     records
             );
         }
@@ -163,7 +162,7 @@ public class HomeController {
             // uid에 맞는 email 있으면
             String userEmail = findUid.get().getEmail();
 
-            pRRepo.insertPointRecord(uid, userEmail, point);
+            pRRepo.insertPointRecord(uid, point);
             uIRepo.updateTotalPointAndRecycle(point, uid);
             flowerRepo.updateFlowerGrownLevel(point, uid, maxLevel);
 

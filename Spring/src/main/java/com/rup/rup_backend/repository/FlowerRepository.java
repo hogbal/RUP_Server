@@ -28,4 +28,9 @@ public interface FlowerRepository extends JpaRepository<FlowerInfo, Integer> {
     @Modifying
     @Query(value = "UPDATE flower_record SET flower_state = 1 WHERE uid = :uid", nativeQuery = true)
     void updateFlowerState(@Param("uid")String uid);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE flower_record F SET F.flower_point = F.flower_point + :point WHERE uid = :uid and flower_state = 0 ", nativeQuery = true)
+    void updateFlowerPoint(@Param("uid")String uid,  @Param("point")int point);
 }

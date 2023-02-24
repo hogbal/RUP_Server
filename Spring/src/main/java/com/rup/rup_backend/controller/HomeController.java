@@ -172,8 +172,8 @@ public class HomeController {
             String userEmail = findUid.get().getEmail();
 
             pRRepo.insertPointRecord(uid, point);
+            flowerRepo.updateFlowerPoint(uid, point);
             uIRepo.updateTotalPointAndRecycle(point, uid);
-            // flowerRepo.updateFlowerGrownLevel(point, uid, maxLevel);
 
             returnSuccess.setSuccess(true);
 

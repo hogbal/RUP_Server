@@ -13,7 +13,5 @@ public class NoticeAndPointRecord<records> {
     private String noticeDate;
     private String title;
     private String notice;
-
-    private String uid;
     private records pointRecord;
 }

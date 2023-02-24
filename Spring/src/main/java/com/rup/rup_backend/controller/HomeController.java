@@ -141,12 +141,21 @@ public class HomeController {
                     notice.get().getDate(),
                     notice.get().getTitle(),
                     notice.get().getNotice(),
-                    findRecords.get(0).getUid(),
                     records
             );
         }
         else{
-            return new NoticeAndPointRecord();
+            records = findRecords
+                    .stream()
+                    .map(r -> new GetPointRecord(r.getUid(), r.getDate(), r.getPoint()))
+                    .collect(Collectors.toList());
+
+            return new NoticeAndPointRecord(
+                null,
+                null,
+                null,
+                records
+            );
         }
     }
 

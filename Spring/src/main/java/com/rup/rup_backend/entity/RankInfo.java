@@ -8,7 +8,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-// @ToString
 public class RankInfo {
     @Id
     private String nickname;

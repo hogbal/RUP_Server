@@ -3,12 +3,10 @@ package com.rup.rup_backend.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import net.bytebuddy.asm.Advice;
 
 @Setter
 @Getter
-// @ToString
 @NoArgsConstructor
 public class ReturnOnlyUid {
     private String uid;

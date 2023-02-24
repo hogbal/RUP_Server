@@ -10,9 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface FlowerRepository extends JpaRepository<FlowerInfo, Integer> {
-    // @Query(value = "SELECT * FROM flower_record WHERE uid = :uid ORDER BY flower_grown_level", nativeQuery = true)
-    // List<FlowerInfo> findFlowerInfoByUid(@Param("uid")String uid);
-
     @Query(value = "SELECT * FROM flower_record WHERE uid = :uid and flower_state = 1", nativeQuery = true)
     List<FlowerInfo> findFlowerEndByUid(@Param("uid")String uid);
 

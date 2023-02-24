@@ -9,7 +9,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-// @ToString
 public class PointRecord {
     @Id
     private int idx;
